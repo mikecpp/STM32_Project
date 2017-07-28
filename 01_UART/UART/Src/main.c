@@ -1,15 +1,5 @@
 #include "main.h"
-#include "uart.h"
-
-#ifdef USE_STM32412G_DISCOVERY
-    #include "stm32f412_system.h"
-    #define UART_PORT   UART_2
-#endif    
-
-#ifdef USE_STM32F723E_DISCOVERY
-    #include "stm32f723_system.h"
-    #define UART_PORT   UART_6
-#endif    
+#include "uart.h" 
 
 int main(void)
 {

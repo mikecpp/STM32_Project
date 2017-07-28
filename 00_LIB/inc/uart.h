@@ -12,7 +12,7 @@
     #include "stm32f103_system.h"
 #endif
 
-#ifdef USE_STM32412G_DISCOVERY
+#if defined(USE_STM32412G_DISCOVERY) || defined(USE_STM32F429_FIRE) 
     #include "stm32f4xx_hal.h"
     #include "stm32f4xx_hal_uart.h"
 #endif
