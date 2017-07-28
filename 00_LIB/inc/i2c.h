@@ -1,8 +1,15 @@
 #ifndef __I2C_H__
 #define __I2C_H__
 
-#include "stm32f7xx_hal.h"
-#include "stm32f723_system.h"
+#ifdef USE_STM32412G_DISCOVERY
+    #include "stm32f4xx_hal.h"
+    #include "stm32f412_system.h"
+#endif
+
+#ifdef USE_STM32F723E_DISCOVERY
+    #include "stm32f7xx_hal.h"
+    #include "stm32f723_system.h"
+#endif    
 
 typedef struct {
     int32_t (*i2c_init)(uint8_t id);

@@ -1,6 +1,6 @@
 #include <string.h>
 
-#include "oled1602.h"
+#include "oled1602.h" 
 
 // oled1602_commands
 #define LCD_CLEARDISPLAY        0x01
@@ -93,7 +93,7 @@ int oled1602_data(uint8_t value)
 void home(void)
 {
     oled1602_command(LCD_RETURNHOME);
-    msleep(2);    
+    msleep(2);     
 }
 
 void setRE(void)

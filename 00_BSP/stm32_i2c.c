@@ -3,8 +3,10 @@
 
 #define I2C_MAX_NUM         4
 #define I2C_ADDRESS         0x3C << 1
+#define I2C_SPEEDCLOCK      400000
 #define I2C_TIMING          0x00E0257A      // 400K Hz
 #define I2C_TIMEOUT         10000           // 1 second
+
 
 I2C_HandleTypeDef m_i2c_handle[I2C_MAX_NUM];
 
@@ -95,7 +97,15 @@ int32_t stm32_i2c_init(uint8_t id)
 {
     I2C_HandleTypeDef *p_i2c_handle = i2c_handle(id);
 
+#ifdef USE_STM32F723E_DISCOVERY    
     p_i2c_handle->Init.Timing          = I2C_TIMING; 
+#endif    
+
+#ifdef USE_STM32412G_DISCOVERY
+    p_i2c_handle->Init.ClockSpeed      = I2C_SPEEDCLOCK; 
+    p_i2c_handle->Init.DutyCycle       = I2C_DUTYCYCLE_2;
+#endif     
+
     p_i2c_handle->Init.OwnAddress1     = 0x00;
     p_i2c_handle->Init.OwnAddress2     = 0x00;
     p_i2c_handle->Init.AddressingMode  = I2C_ADDRESSINGMODE_7BIT;
