@@ -136,7 +136,7 @@
             <DriverSelection>4107</DriverSelection>
           </Flash1>
           <bUseTDR>1</bUseTDR>
-          <Flash2>STLink\ST-LINKIII-KEIL_SWO.dll</Flash2>
+          <Flash2>BIN\UL2CM3.DLL</Flash2>
           <Flash3></Flash3>
           <Flash4></Flash4>
           <pFcarmOut></pFcarmOut>
@@ -978,6 +978,21 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f103_fire_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32f103_fire_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32_gui.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1112,6 +1127,11 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\gui.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -2543,6 +2563,21 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f103_fire_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32f103_fire_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32_gui.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2677,6 +2712,11 @@
                   </Cads>
                 </FileArmAds>
               </FileOption>
+            </File>
+            <File>
+              <FileName>gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\gui.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4008,6 +4048,21 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f103_fire_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32f103_fire_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32_gui.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4142,6 +4197,11 @@
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\gui.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5523,6 +5583,21 @@
               <FileType>1</FileType>
               <FilePath>..\..\..\00_BSP\stm32f103_system.c</FilePath>
             </File>
+            <File>
+              <FileName>ili9341.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\ili9341.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f103_fire_lcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32f103_fire_lcd.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32_gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_BSP\stm32_gui.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -5657,6 +5732,11 @@
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>gui.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\gui.c</FilePath>
             </File>
           </Files>
         </Group>

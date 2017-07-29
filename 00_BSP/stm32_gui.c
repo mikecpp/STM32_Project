@@ -1,5 +1,4 @@
 #include "stm32_gui.h"
-#include "stm32f723e_discovery_lcd.h"
 
 GUI_Interface_T stm32_gui_interface = 
 {

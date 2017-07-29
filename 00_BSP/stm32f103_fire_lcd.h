@@ -7,8 +7,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 // #include "stm32f103_fire.h" 
-#include "../Components/ili9341/ili9341.h"
-#include "../../../Utilities/Fonts/fonts.h" 
+#include "ili9341.h"
+#include "fonts.h" 
 
 typedef struct 
 { 
@@ -99,6 +99,7 @@ void     BSP_LCD_DisplayStringAt(uint16_t Xpos, uint16_t Ypos, uint8_t *Text, Li
 void     BSP_LCD_DisplayChar(uint16_t Xpos, uint16_t Ypos, uint8_t Ascii);
 
 uint16_t BSP_LCD_ReadPixel(uint16_t Xpos, uint16_t Ypos);
+void     BSP_LCD_DrawPixel(uint16_t Xpos, uint16_t Ypos, uint16_t RGBCode);
 void     BSP_LCD_DrawHLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length);
 void     BSP_LCD_DrawVLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length);
 void     BSP_LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);

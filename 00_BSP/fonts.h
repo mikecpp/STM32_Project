@@ -1,14 +1,14 @@
 /**
   ******************************************************************************
-  * @file    UART/UART_TwoBoards_ComPolling/Inc/main.h 
+  * @file    fonts.h
   * @author  MCD Application Team
   * @version V1.0.0
-  * @date    30-December-2016
-  * @brief   Header for main.c module
+  * @date    18-February-2014
+  * @brief   Header for fonts.c file
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2016 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -36,43 +36,99 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __FONTS_H
+#define __FONTS_H
+
+#ifdef __cplusplus
+ extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f7xx_hal.h"
-#include "stm32f723e_discovery.h"
+#include <stdint.h>
 
-/* Exported types ------------------------------------------------------------*/
-/* Exported constants --------------------------------------------------------*/
-/* User can use this section to tailor USARTx/UARTx instance used and associated 
-   resources */
-/* Definition for USARTx clock resources */
-#define USARTx                           USART2
-#define USARTx_CLK_ENABLE()              __USART2_CLK_ENABLE()
-#define USARTx_RX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE()
-#define USARTx_TX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE()
-
-#define USARTx_FORCE_RESET()             __HAL_RCC_USART2_FORCE_RESET()
-#define USARTx_RELEASE_RESET()           __HAL_RCC_USART2_RELEASE_RESET()
-
-/* Definition for USARTx Pins */
-#define USARTx_TX_PIN                    GPIO_PIN_2
-#define USARTx_TX_GPIO_PORT              GPIOA
-#define USARTx_TX_AF                     GPIO_AF7_USART2
-#define USARTx_RX_PIN                    GPIO_PIN_3
-#define USARTx_RX_GPIO_PORT              GPIOA
-#define USARTx_RX_AF                     GPIO_AF7_USART2
-
-/* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
-/* Size of Reception buffer */
-#define RXBUFFERSIZE                      TXBUFFERSIZE
+/** @addtogroup Utilities
+  * @{
+  */
   
-/* Exported macro ------------------------------------------------------------*/
-#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
-/* Exported functions ------------------------------------------------------- */
+/** @addtogroup STM32_EVAL
+  * @{
+  */ 
 
-#endif /* __MAIN_H */
+/** @addtogroup Common
+  * @{
+  */
+
+/** @addtogroup FONTS
+  * @{
+  */ 
+
+/** @defgroup FONTS_Exported_Types
+  * @{
+  */ 
+typedef struct _tFont
+{    
+  const uint8_t *table;
+  uint16_t Width;
+  uint16_t Height;
+  
+} sFONT;
+
+extern sFONT Font24;
+extern sFONT Font20;
+extern sFONT Font16;
+extern sFONT Font12;
+extern sFONT Font8;
+/**
+  * @}
+  */ 
+
+/** @defgroup FONTS_Exported_Constants
+  * @{
+  */ 
+#define LINE(x) ((x) * (((sFONT *)BSP_LCD_GetFont())->Height))
+
+/**
+  * @}
+  */ 
+
+/** @defgroup FONTS_Exported_Macros
+  * @{
+  */ 
+/**
+  * @}
+  */ 
+
+/** @defgroup FONTS_Exported_Functions
+  * @{
+  */ 
+/**
+  * @}
+  */
+
+#ifdef __cplusplus
+}
+#endif
+  
+#endif /* __FONTS_H */
+ 
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */ 
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */      
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

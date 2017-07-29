@@ -3,6 +3,14 @@
 
 #include "gui.h"
 
+#ifdef USE_STM32F723E_DISCOVERY
+    #include "stm32f723e_discovery_lcd.h"
+#endif
+
+#ifdef USE_STM32F103_FIRE
+    #include "stm32f103_fire_lcd.h"
+#endif    
+
 int32_t STM32_GUI_Init(void);
 int32_t STM32_GUI_GetXSize(void);
 int32_t STM32_GUI_GetYSize(void);
