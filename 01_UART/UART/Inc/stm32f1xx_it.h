@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    UART/UART_TwoBoards_ComPolling/Inc/main.h 
+  * @file    UART/UART_Printf/Inc/stm32f1xx_it.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    30-December-2016
-  * @brief   Header for main.c module
+  * @version V1.5.0
+  * @date    14-April-2017
+  * @brief   This file contains the headers of the interrupt handlers.
   ******************************************************************************
   * @attention
   *
@@ -36,43 +36,32 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __MAIN_H
-#define __MAIN_H
+#ifndef __STM32F1xx_IT_H
+#define __STM32F1xx_IT_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f7xx_hal.h"
-#include "stm32f723e_discovery.h"
-
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
-/* User can use this section to tailor USARTx/UARTx instance used and associated 
-   resources */
-/* Definition for USARTx clock resources */
-#define USARTx                           USART2
-#define USARTx_CLK_ENABLE()              __USART2_CLK_ENABLE()
-#define USARTx_RX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE()
-#define USARTx_TX_GPIO_CLK_ENABLE()      __GPIOC_CLK_ENABLE()
-
-#define USARTx_FORCE_RESET()             __HAL_RCC_USART2_FORCE_RESET()
-#define USARTx_RELEASE_RESET()           __HAL_RCC_USART2_RELEASE_RESET()
-
-/* Definition for USARTx Pins */
-#define USARTx_TX_PIN                    GPIO_PIN_2
-#define USARTx_TX_GPIO_PORT              GPIOA
-#define USARTx_TX_AF                     GPIO_AF7_USART2
-#define USARTx_RX_PIN                    GPIO_PIN_3
-#define USARTx_RX_GPIO_PORT              GPIOA
-#define USARTx_RX_AF                     GPIO_AF7_USART2
-
-/* Size of Trasmission buffer */
-#define TXBUFFERSIZE                      (COUNTOF(aTxBuffer) - 1)
-/* Size of Reception buffer */
-#define RXBUFFERSIZE                      TXBUFFERSIZE
-  
 /* Exported macro ------------------------------------------------------------*/
-#define COUNTOF(__BUFFER__)   (sizeof(__BUFFER__) / sizeof(*(__BUFFER__)))
 /* Exported functions ------------------------------------------------------- */
 
-#endif /* __MAIN_H */
+void NMI_Handler(void);
+void HardFault_Handler(void);
+void MemManage_Handler(void);
+void BusFault_Handler(void);
+void UsageFault_Handler(void);
+void SVC_Handler(void);
+void DebugMon_Handler(void);
+void PendSV_Handler(void);
+void SysTick_Handler(void);
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __STM32F1xx_IT_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

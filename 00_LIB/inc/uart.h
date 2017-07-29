@@ -6,10 +6,9 @@
     #include "stm32l4xx_hal_uart.h"
 #endif
 
-#ifdef STM32F103xE
+#ifdef USE_STM32F103_FIRE
     #include "stm32f1xx_hal.h"
     #include "stm32f1xx_hal_uart.h"
-    #include "stm32f103_system.h"
 #endif
 
 #if defined(USE_STM32412G_DISCOVERY) || defined(USE_STM32F429_FIRE) 

@@ -51,12 +51,14 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *UartHandle)
     */
     
     // USART6
+    /*
     if(UartHandle->Instance == USART6) {
         fifo_write(m_handle_6, &m_ch_6, 1);
         if(HAL_UART_Receive_IT(UartHandle, (uint8_t *)&m_ch_6, 1) != HAL_OK) {
             printf("HAL_UART6_Receive_IT() Fail !!!\r\n");
         }
-    }  
+    } 
+    */    
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -74,9 +76,11 @@ int uart_init(UART_ID id, uint32_t baud_rate)
         case UART_3:
             UartHandle[id].Instance = USART3;
             break;
+#ifdef USART6        
         case UART_6:
             UartHandle[id].Instance = USART6;
             break;
+#endif        
         default:
             return -1;
     }    
