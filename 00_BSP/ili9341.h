@@ -1,6 +1,7 @@
 #ifndef __ILI9341_H
 #define __ILI9341_H
 
+#include "main.h"
 #include "../Common/lcd.h"
 
 #define ILI9341_ID                  0x9341

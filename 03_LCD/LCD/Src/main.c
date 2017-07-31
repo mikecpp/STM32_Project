@@ -1,6 +1,5 @@
 #include "main.h"
 #include "uart.h" 
-#include "stm32f103_fire_lcd.h"
 #include "stm32_gui.h"
 
 int main(void)

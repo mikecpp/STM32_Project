@@ -1,5 +1,4 @@
 #include "ili9341.h"
-#include "stm32f1xx.h"
 
 LCD_DrvTypeDef ili9341_drv = 
 {
