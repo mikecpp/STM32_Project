@@ -72,7 +72,7 @@ int uart_init(UART_ID id, uint32_t baud_rate)
         case UART_3:
             UartHandle[id].Instance = USART3;
             break;
-#ifdef  STM32F412Zx
+#ifdef  USART6
         case UART_6:
             UartHandle[id].Instance = USART6;
             break;
