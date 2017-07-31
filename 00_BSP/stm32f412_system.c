@@ -42,6 +42,7 @@ static void SystemClock_Config(void)
 {
     RCC_ClkInitTypeDef RCC_ClkInitStruct;
     RCC_OscInitTypeDef RCC_OscInitStruct;
+    RCC_PeriphCLKInitTypeDef PeriphClkInitStruct;    
     HAL_StatusTypeDef ret = HAL_OK;
 
     __HAL_RCC_PWR_CLK_ENABLE();
@@ -63,6 +64,14 @@ static void SystemClock_Config(void)
     {
         while(1) { ; } 
     }
+    
+    /* Select PLLSAI output as USB clock source */
+    PeriphClkInitStruct.PLLI2S.PLLI2SM = 8;
+    PeriphClkInitStruct.PLLI2S.PLLI2SQ = 4;
+    PeriphClkInitStruct.PLLI2S.PLLI2SN = 192;
+    PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_CK48;
+    PeriphClkInitStruct.Clk48ClockSelection = RCC_CK48CLKSOURCE_PLLI2SQ;
+    HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct);    
 
     RCC_ClkInitStruct.ClockType      = (RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2);
     RCC_ClkInitStruct.SYSCLKSource   = RCC_SYSCLKSOURCE_PLLCLK;

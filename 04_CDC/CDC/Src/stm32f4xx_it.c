@@ -118,6 +118,19 @@ void SysTick_Handler(void)
     HAL_IncTick();
 }
 
+extern PCD_HandleTypeDef hpcd;
+
+void OTG_FS_IRQHandler(void)
+{
+    HAL_PCD_IRQHandler(&hpcd);
+}
+
+/**
+  * @brief  This function handles USB OTG FS Wakeup IRQ Handler.
+  * @param  None
+  * @retval None
+  */
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
