@@ -21,9 +21,13 @@ int main(void)
     
     printf("Hello Mike !\r\n");
     
+    char msg[32];
     while (1)
     {
-        printf("Count = %d \r\n", count++);
+        sprintf(msg, "Count = %d \r\n", count++);
+        USBD_CDC_SetTxBuffer(&USBD_Device, (uint8_t*) &msg, strlen(msg));  
+        USBD_CDC_TransmitPacket(&USBD_Device);
+        printf("%s", msg);
         delay_ms(1000);
     }
 }

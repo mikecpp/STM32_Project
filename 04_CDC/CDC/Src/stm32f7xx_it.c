@@ -118,6 +118,17 @@ void SysTick_Handler(void)
     HAL_IncTick();
 }
 
+extern PCD_HandleTypeDef hpcd;
+
+#ifdef USE_USB_FS
+void OTG_FS_IRQHandler(void)
+#else
+void OTG_HS_IRQHandler(void)
+#endif
+{
+    HAL_PCD_IRQHandler(&hpcd);
+}
+
 /******************************************************************************/
 /*                 STM32F7xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

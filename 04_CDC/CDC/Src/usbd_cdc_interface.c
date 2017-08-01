@@ -127,9 +127,19 @@ static void PeriodElapsedCallback(void)
     }
 }
 
+#define MAX_DATA_LEN    256
+static uint8_t  data[MAX_DATA_LEN];
+static uint32_t len = 0;
+
 static int8_t CDC_Itf_Receive(uint8_t* Buf, uint32_t *Len)
 {
-    printf("%s \n", Buf);
+    len = *Len;
+    if(len > MAX_DATA_LEN) {
+        len = MAX_DATA_LEN;
+    }    
+    memcpy(data, Buf, len);
+    data[len] = 0x00;
+    printf("(%d) %s \n", *Len, data);
     
     USBD_CDC_ReceivePacket(&USBD_Device);
     
