@@ -1,29 +1,23 @@
 #ifndef __TIMER_H__
 #define __TIMER_H__
 
-#ifdef STM32F103xE
-    #include "stm32f1xx_hal.h"
-    #include "stm32f1xx_hal_tim.h"
-    #define TIMER_PRESCALER     71
-#endif
+#include "main.h"
 
-#ifdef STM32F412Zx
-    #include "stm32f4xx_hal.h"
-    #include "stm32f4xx_hal_tim.h"
-    #define TIMER_PRESCALER     99
-#endif
+#define MAX_TIMER_ID    5
 
-#ifdef STM32F429xx
-    #include "stm32f4xx_hal.h"
-    #include "stm32f4xx_hal_tim.h"
-    #define TIMER_PRESCALER     179
-#endif    
+typedef int32_t (*timer_cb)(void);
 
-#define TIM2_CLK_ENABLE()     __HAL_RCC_TIM2_CLK_ENABLE()
+typedef struct {
+    int32_t  id;        // start ID from 0 
+    timer_cb cb_func;   
+    uint32_t timeout;   // uint: 10 ms
+    uint32_t count;
+    uint8_t  start;     // 0: STOP, 1: START 
+} Timer_T;
 
-int  timer_init(void);
-void timer_start(void);
-void timer_stop(void);
-void timer_delay_us(const uint16_t delay);
+int32_t timer_init(void);
+int32_t timer_register(timer_cb func, uint32_t timeout);
+int32_t timer_start(int32_t id);
+int32_t timer_stop(int32_t id);
 
 #endif//__TIMER_H__

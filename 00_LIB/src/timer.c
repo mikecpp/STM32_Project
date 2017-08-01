@@ -1,40 +1,90 @@
+#include "main.h"
 #include "timer.h"
 
-TIM_HandleTypeDef    TimHandle;
+static Timer_T m_timer[MAX_TIMER_ID];
+static int8_t m_id = -1;
 
-int timer_init(void)
+static void do_timer(void)
 {
-    TIM2_CLK_ENABLE(); 
+    int i;
+
+    if(m_id == -1) { // Empty 
+        return;
+    }   
     
-    TimHandle.Instance               = TIM2;
+    for(i=0; i<m_id; i++) {
+        if(m_timer[i].count == 0) {
+            m_timer[i].cb_func();
+            m_timer[i].count = m_timer[i].timeout;
+        }
+    }
+}
 
-    TimHandle.Init.Period            = 0xFFFF;
-    TimHandle.Init.Prescaler         = TIMER_PRESCALER; 
-    TimHandle.Init.ClockDivision     = 0;  
-    TimHandle.Init.CounterMode       = TIM_COUNTERMODE_UP;
-    TimHandle.Init.RepetitionCounter = 0;
-
-    if (HAL_TIM_Base_Init(&TimHandle) != HAL_OK) {
-        return -1;
+static void timer_entry(void)
+{
+    int i;
+    
+    if(m_id == -1) { // Empty 
+        return;
+    }    
+    
+    for(i=0; i<m_id; i++) {
+        if(m_timer[i].start == 1) { 
+            m_timer[i].count--; 
+            if(m_timer[i].count <= 0) {
+                m_timer[i].count = 0;
+            }    
+        }    
     }
     
-    HAL_TIM_Base_Start(&TimHandle);
+    do_timer();
+}
+
+TIM_HandleTypeDef        TimHandle;
+
+int32_t timer_init(void)
+{
     
-    return 0;
+    
+    
+	return 0;
 }
 
-void timer_start(void)
+int32_t timer_register(timer_cb func, uint32_t timeout)
 {
-    HAL_TIM_Base_Start(&TimHandle);
+    if(m_id >= MAX_TIMER_ID) { 
+        return -1;
+    }    
+    
+    m_timer[m_id].id      = m_id; 
+    m_timer[m_id].cb_func = func;
+    m_timer[m_id].timeout = timeout;
+    m_timer[m_id].count   = timeout;
+    m_timer[m_id].start   = 0;
+    
+    m_id++;
+    
+	return m_timer[m_id].id;
 }
 
-void timer_stop(void)
+int32_t timer_start(int32_t id)
 {
-    HAL_TIM_Base_Stop(&TimHandle);
+    if((id < 0)|| (id >= MAX_TIMER_ID)) {
+        return -1;
+    }
+
+    m_timer[id].start = 1;
+    
+	return 0;
 }
 
-void timer_delay_us(const uint16_t delay)
+int32_t timer_stop(int32_t id)
 {
-    __HAL_TIM_SET_COUNTER(&TimHandle, 0);
-    while(__HAL_TIM_GET_COUNTER(&TimHandle) <= delay);
+    if((id < 0)|| (id >= MAX_TIMER_ID)) {
+        return -1;
+    }
+
+    m_timer[id].start = 0;
+
+	return 0;
 }
