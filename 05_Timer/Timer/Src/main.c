@@ -19,7 +19,6 @@ int task_2(void)
 int main(void)
 {
     int count = 0;
-    int32_t id_1, id_2;
     
     system_init();
 
@@ -32,11 +31,10 @@ int main(void)
     
     timer_init();
     
-    id_1 = timer_register(task_1, 100); // 1 second
-    id_2 = timer_register(task_2, 500); // 5 seconds
-    
-    timer_start(id_1);  
-    timer_start(id_2);
+    timer_register(task_1, 1000); // 1 second
+    timer_register(task_2, 2000); // 2 seconds
+       
+    timer_start();
     
     while (1)
     {

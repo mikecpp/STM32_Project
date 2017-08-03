@@ -2,10 +2,11 @@
 #define __TIMER_H__
 
 #include "main.h"
+#include "stm32_timer.h"
 
 #define MAX_TIMER_ID    5
 
-typedef int32_t (*timer_cb)(void);
+typedef int32_t (*timer_cb)(void); 
 
 typedef struct {
     int32_t  id;        // start ID from 0 
@@ -17,7 +18,8 @@ typedef struct {
 
 int32_t timer_init(void);
 int32_t timer_register(timer_cb func, uint32_t timeout);
-int32_t timer_start(int32_t id);
-int32_t timer_stop(int32_t id);
+int32_t timer_start(void);
+int32_t timer_stop(void);
+int32_t timer_delay_us(uint16_t delay);
 
 #endif//__TIMER_H__

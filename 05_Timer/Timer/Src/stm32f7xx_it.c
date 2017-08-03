@@ -1,5 +1,8 @@
+#include "main.h"
 #include "stm32f7xx_hal.h"
 #include "stm32f7xx_it.h"
+
+#include "stm32_timer.h"
    
 /** @addtogroup STM32F7xx_HAL_Examples
   * @{
@@ -116,6 +119,17 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
     HAL_IncTick();
+}
+
+extern TIM_HandleTypeDef TimHandle;
+void TIM2_IRQHandler(void)
+{
+    if (__HAL_TIM_GET_FLAG(&TimHandle, TIM_FLAG_UPDATE) != RESET) {
+        if (__HAL_TIM_GET_ITSTATUS(&TimHandle, TIM_IT_UPDATE) != RESET) {
+            __HAL_TIM_CLEAR_FLAG(&TimHandle, TIM_FLAG_UPDATE);    
+            stm32_timer_entry();
+        }
+    }    
 }
 
 /******************************************************************************/
