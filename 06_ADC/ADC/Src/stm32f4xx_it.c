@@ -158,6 +158,18 @@ void SysTick_Handler(void)
     HAL_IncTick();
 }
 
+extern ADC_HandleTypeDef       AdcHandle;
+
+void DMA2_Stream0_IRQHandler(void)
+{
+    HAL_DMA_IRQHandler(AdcHandle.DMA_Handle);
+}
+
+void ADC_IRQHandler(void)
+{
+    HAL_ADC_IRQHandler(&AdcHandle);
+}
+
 /******************************************************************************/
 /*                 STM32F4xx Peripherals Interrupt Handlers                   */
 /*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */

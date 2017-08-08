@@ -1,9 +1,12 @@
 #include "stm32_adc.h"
 
+#define MODE_INT    0
+#define MODE_DMA    1
+
 ADC_CH_T m_adc_channel[19] = 
 {
-    0,  GPIO_PIN_1, GPIOA, ADC_CHANNEL_0,   // A0
-    1,  0, 0, 0,
+    0,  0, 0, 0,
+    1,  GPIO_PIN_1, GPIOA, ADC_CHANNEL_1,   // A0
     2,  0, 0, 0, 
     3,  0, 0, 0, 
     4,  0, 0, 0, 
@@ -25,10 +28,11 @@ ADC_CH_T m_adc_channel[19] =
 
 ADC_HandleTypeDef       AdcHandle;
 ADC_ChannelConfTypeDef  AdcConfig;
+uint8_t m_ch_id = 1;
 
-__IO uint16_t AdcValue = 0;
+uint16_t AdcValue = 255;
 
-static void adc_msp_init(uint8_t ch_id)
+void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
 {
     GPIO_InitTypeDef          GPIO_InitStruct;
     static DMA_HandleTypeDef  hdma_adc;
@@ -40,11 +44,17 @@ static void adc_msp_init(uint8_t ch_id)
     __HAL_RCC_ADC1_CLK_ENABLE();
     __HAL_RCC_DMA2_CLK_ENABLE();
     
-    GPIO_InitStruct.Pin  = m_adc_channel[ch_id].pin;
+    GPIO_InitStruct.Pin  = m_adc_channel[m_ch_id].pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    HAL_GPIO_Init(m_adc_channel[ch_id].port, &GPIO_InitStruct);
-    
+    HAL_GPIO_Init(m_adc_channel[m_ch_id].port, &GPIO_InitStruct);
+
+#if MODE_INT    
+    HAL_NVIC_SetPriority(ADC_IRQn, 0, 0);
+    HAL_NVIC_EnableIRQ(ADC_IRQn);    
+#endif    
+
+#if MODE_DMA
     hdma_adc.Instance                 = DMA2_Stream0;
     hdma_adc.Init.Channel             = DMA_CHANNEL_0;
     hdma_adc.Init.Direction           = DMA_PERIPH_TO_MEMORY;
@@ -61,14 +71,17 @@ static void adc_msp_init(uint8_t ch_id)
     
     HAL_DMA_Init(&hdma_adc);
 
-    __HAL_LINKDMA(&AdcHandle, DMA_Handle, hdma_adc);
+    __HAL_LINKDMA(hadc, DMA_Handle, hdma_adc); 
 
     HAL_NVIC_SetPriority(DMA2_Stream0_IRQn, 0, 0);
     HAL_NVIC_EnableIRQ(DMA2_Stream0_IRQn);    
+#endif    
 }
 
 int32_t stm32_adc_init(uint8_t ch_id)
 {   
+    m_ch_id = ch_id;
+    
     AdcHandle.Instance                   = ADC1;
   
     AdcHandle.Init.ClockPrescaler        = ADC_CLOCKPRESCALER_PCLK_DIV4;
@@ -82,7 +95,12 @@ int32_t stm32_adc_init(uint8_t ch_id)
     AdcHandle.Init.ExternalTrigConv      = ADC_EXTERNALTRIGCONV_T1_CC1;
     AdcHandle.Init.DataAlign             = ADC_DATAALIGN_RIGHT;
     AdcHandle.Init.NbrOfConversion       = 1;
+#if MODE_DMA    
     AdcHandle.Init.DMAContinuousRequests = ENABLE;
+#endif
+#if MODE_INT    
+    AdcHandle.Init.DMAContinuousRequests = DISABLE;
+#endif    
     AdcHandle.Init.EOCSelection          = DISABLE;    
     
     if(HAL_ADC_Init(&AdcHandle) != HAL_OK) {
@@ -91,37 +109,60 @@ int32_t stm32_adc_init(uint8_t ch_id)
 
     AdcConfig.Channel      = m_adc_channel[ch_id].channel;
     AdcConfig.Rank         = 1;
-    AdcConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+    AdcConfig.SamplingTime = ADC_SAMPLETIME_144CYCLES;
     AdcConfig.Offset       = 0;
 
     if (HAL_ADC_ConfigChannel(&AdcHandle, &AdcConfig) != HAL_OK) {
         return -1;
     }    
-    
-    adc_msp_init(ch_id);
-    
-    return 0;
+ 
+    return 0; 
 }
 
 int32_t stm32_adc_start(uint8_t ch_id)
 {
+#if MODE_DMA    
     if(HAL_ADC_Start_DMA(&AdcHandle, (uint32_t*)&AdcValue, 1) != HAL_OK) {
         return -1;
     }      
+#endif
+
+#if MODE_INT
+    if (HAL_ADC_Start_IT(&AdcHandle) != HAL_OK) {
+        return -1;
+    }
+#endif
     
     return 0;
 }
 
 int32_t stm32_adc_stop(uint8_t ch_id)
 {
+#if MODE_DMA        
     HAL_ADC_Stop_DMA(&AdcHandle);
+#endif
+
+#if MODE_INT  
+    HAL_ADC_Stop_IT(&AdcHandle);
+#endif    
     
     return 0;
 }
 
-int32_t stm32_adc_get_value(uint8_t ch_id, uint16_t *value)
-{
+int32_t stm32_adc_read(uint8_t ch_id, uint16_t *value)
+{      
     *value = AdcValue;
     
     return 0;
+}
+
+void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
+{
+    AdcValue = HAL_ADC_GetValue(AdcHandle);
+}
+
+
+void HAL_ADC_ErrorCallback(ADC_HandleTypeDef *hadc)
+{
+    printf("Error !!! \r\n");
 }

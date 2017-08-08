@@ -1,16 +1,18 @@
 #ifndef __ADC_H__
 #define __ADC_H__
 
-#include "stm32f1xx_hal.h"
-#include "stm32f1xx_hal_adc.h"
+#include "main.h"
 
-typedef enum {
-    ADC_1,
-    ADC_2,
-    ADC_3
-} ADC_ID;
+#define ARDUINO_A0      (1)
+#define ARDUINO_A1      (11)
+#define ARDUINO_A2      (13)
+#define ARDUINO_A3      (14)
+#define ARDUINO_A4      (15)
+#define ARDUINO_A5      (8)
 
-int adc_init(ADC_ID id);
-int adc_read(ADC_ID id);
+int32_t adc_init(uint8_t ch_id);
+int32_t adc_start(uint8_t ch_id);
+int32_t adc_stop(uint8_t ch_id);
+int32_t adc_read(uint8_t ch_id, uint16_t *value);
 
 #endif//__ADC_H__

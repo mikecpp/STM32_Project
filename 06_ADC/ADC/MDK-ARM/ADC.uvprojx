@@ -1118,6 +1118,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\adc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -2698,6 +2703,11 @@
                 </FileArmAds>
               </FileOption>
             </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\adc.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -4177,6 +4187,11 @@
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\adc.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5707,6 +5722,11 @@
               <FileName>stm32f1xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
+            </File>
+            <File>
+              <FileName>adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\src\adc.c</FilePath>
             </File>
           </Files>
         </Group>
