@@ -30,7 +30,7 @@ ADC_HandleTypeDef       AdcHandle;
 ADC_ChannelConfTypeDef  AdcConfig;
 uint8_t m_ch_id = 1;
 
-uint16_t AdcValue = 255;
+__IO uint16_t AdcValue = 255;
 
 void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
 {
@@ -60,8 +60,8 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef *hadc)
     hdma_adc.Init.Direction           = DMA_PERIPH_TO_MEMORY;
     hdma_adc.Init.PeriphInc           = DMA_PINC_DISABLE;
     hdma_adc.Init.MemInc              = DMA_MINC_ENABLE;
-    hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_WORD;
-    hdma_adc.Init.MemDataAlignment    = DMA_MDATAALIGN_WORD;
+    hdma_adc.Init.PeriphDataAlignment = DMA_PDATAALIGN_HALFWORD;
+    hdma_adc.Init.MemDataAlignment    = DMA_MDATAALIGN_HALFWORD;
     hdma_adc.Init.Mode                = DMA_CIRCULAR;
     hdma_adc.Init.Priority            = DMA_PRIORITY_HIGH;
     hdma_adc.Init.FIFOMode            = DMA_FIFOMODE_DISABLE;
@@ -158,7 +158,9 @@ int32_t stm32_adc_read(uint8_t ch_id, uint16_t *value)
 
 void HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef* AdcHandle)
 {
+#if MODE_INT       
     AdcValue = HAL_ADC_GetValue(AdcHandle);
+#endif    
 }
 
 
