@@ -5,11 +5,12 @@ int main(void)
 {
     int count = 0;
     
-    system_init();
+    system_init(); 
 
     if(uart_init(UART_PORT, 115200) != 0) { 
         return -1;
     }
+    
     uart_consol(UART_PORT);
     
     printf("Hello Mike !\r\n");

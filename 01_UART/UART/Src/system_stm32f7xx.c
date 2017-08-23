@@ -66,7 +66,12 @@
 #include "stm32f7xx.h"
 
 #if !defined  (HSE_VALUE) 
-  #define HSE_VALUE    ((uint32_t)25000000) /*!< Default value of the External oscillator in Hz */
+    #ifdef USE_STM32F429_FIRE
+        #define HSE_VALUE    ((uint32_t)25000000) /*!< Default value of the External oscillator in Hz */
+    #endif
+    #ifdef USE_STM32F429I_DISCO
+        #define HSE_VALUE    ((uint32_t)8000000) /*!< Default value of the External oscillator in Hz */
+    #endif    
 #endif /* HSE_VALUE */
 
 #if !defined  (HSI_VALUE)

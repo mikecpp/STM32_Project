@@ -3,9 +3,7 @@
 #include "adc.h"
 
 int main(void)
-{
-    int count = 0;
-    
+{   
     system_init();
 
     if(uart_init(UART_PORT, 115200) != 0) { 
@@ -23,7 +21,7 @@ int main(void)
     while (1)
     {
         adc_read(ARDUINO_A0, &adc_value); 
-        printf("ADC = %d Count = %d \r\n", adc_value, count++);
-        delay_ms(100);
+        printf("%d\r\n", adc_value);
+        delay_ms(10);
     }
 }

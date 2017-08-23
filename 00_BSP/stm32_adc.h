@@ -4,7 +4,6 @@
 #include "main.h"
 
 typedef struct {
-    uint8_t         ch_id;
     uint16_t        pin;
     GPIO_TypeDef*   port; 
     uint32_t        channel;

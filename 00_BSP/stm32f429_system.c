@@ -59,7 +59,12 @@ static void SystemClock_Config(void)
     RCC_OscInitStruct.HSEState       = RCC_HSE_ON; 
     RCC_OscInitStruct.PLL.PLLState   = RCC_PLL_ON;
     RCC_OscInitStruct.PLL.PLLSource  = RCC_PLLSOURCE_HSE;
+#ifdef USE_STM32F429I_DISCO    
+    RCC_OscInitStruct.PLL.PLLM       = 8;
+#endif
+#ifdef USE_STM32F429_FIRE
     RCC_OscInitStruct.PLL.PLLM       = 25;
+#endif    
     RCC_OscInitStruct.PLL.PLLN       = 360;
     RCC_OscInitStruct.PLL.PLLP       = RCC_PLLP_DIV2;
     RCC_OscInitStruct.PLL.PLLQ       = 7;

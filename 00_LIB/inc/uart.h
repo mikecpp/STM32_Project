@@ -11,7 +11,9 @@
     #include "stm32f1xx_hal_uart.h"
 #endif
 
-#if defined(USE_STM32412G_DISCOVERY) || defined(USE_STM32F429_FIRE) 
+#if defined(USE_STM32412G_DISCOVERY) || defined(USE_STM32F429_FIRE) || \
+    defined(USE_STM32F429I_DISCO)    || defined(USE_STM32F407_MINI) || \
+    defined(USE_STM32F407_EXPLORER) 
     #include "stm32f4xx_hal.h"
     #include "stm32f4xx_hal_uart.h"
 #endif
