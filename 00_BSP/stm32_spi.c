@@ -125,7 +125,7 @@ int32_t stm32_spi_init(uint8_t id)
 {
     SPI_HandleTypeDef *p_spi_handle = spi_handle(id);    
     
-    p_spi_handle->Init.BaudRatePrescaler  = SPI_BAUDRATEPRESCALER_8; 
+    p_spi_handle->Init.BaudRatePrescaler  = SPI_BAUDRATEPRESCALER_2; 
     p_spi_handle->Init.Direction          = SPI_DIRECTION_2LINES;
     p_spi_handle->Init.CLKPhase           = SPI_PHASE_1EDGE;
     p_spi_handle->Init.CLKPolarity        = SPI_POLARITY_LOW; 

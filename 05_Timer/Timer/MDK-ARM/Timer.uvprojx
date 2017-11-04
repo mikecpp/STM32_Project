@@ -994,16 +994,6 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\fifo.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f7xx_it.c</FilePath>
@@ -1119,9 +1109,19 @@
               </FileOption>
             </File>
             <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\fifo.c</FilePath>
+            </File>
+            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\timer.c</FilePath>
+              <FilePath>..\..\..\00_LIB\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1605,7 +1605,7 @@
       <TargetName>STM32F723E_DISCOVERY</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060422::V5.06 update 4 (build 422)::ARMCC</pCCUsed>
+      <pCCUsed>5060300::V5.06 update 3 (build 300)::ARMCC</pCCUsed>
       <TargetOption>
         <TargetCommonOption>
           <Device>STM32F723IEKx</Device>
@@ -1930,7 +1930,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F723xx,USE_STM32F723E_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;D:\STM32Cube_F7\Drivers\CMSIS\Device\ST\STM32F7xx\Include;D:\STM32Cube_F7\Drivers\CMSIS\Include;D:\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc;D:\STM32Cube_F7\Drivers\BSP\STM32F723E-Discovery;D:\STM32Cube_F7\Drivers\BSP\Components\Common;..\..\..\00_BSP;..\..\..\00_LIB\inc</IncludePath>
+              <IncludePath>..\Inc;D:\STM32Cube_F7\Drivers\CMSIS\Device\ST\STM32F7xx\Include;D:\STM32Cube_F7\Drivers\CMSIS\Include;D:\STM32Cube_F7\Drivers\STM32F7xx_HAL_Driver\Inc;D:\STM32Cube_F7\Drivers\BSP\STM32F723E-Discovery;D:\STM32Cube_F7\Drivers\BSP\Components\Common;..\..\..\00_BSP;..\..\..\00_LIB</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -2589,16 +2589,6 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\fifo.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f7xx_it.c</FilePath>
@@ -2714,9 +2704,19 @@
               </FileOption>
             </File>
             <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\fifo.c</FilePath>
+            </File>
+            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\timer.c</FilePath>
+              <FilePath>..\..\..\00_LIB\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -4084,16 +4084,6 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\fifo.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f7xx_it.c</FilePath>
@@ -4209,9 +4199,19 @@
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
             </File>
             <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\fifo.c</FilePath>
+            </File>
+            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\timer.c</FilePath>
+              <FilePath>..\..\..\00_LIB\timer.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -5629,16 +5629,6 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>uart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\uart.c</FilePath>
-            </File>
-            <File>
-              <FileName>fifo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\fifo.c</FilePath>
-            </File>
-            <File>
               <FileName>stm32f7xx_it.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\stm32f7xx_it.c</FilePath>
@@ -5754,9 +5744,19 @@
               <FilePath>..\Src\stm32f1xx_it.c</FilePath>
             </File>
             <File>
+              <FileName>uart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\uart.c</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\00_LIB\fifo.c</FilePath>
+            </File>
+            <File>
               <FileName>timer.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\00_LIB\src\timer.c</FilePath>
+              <FilePath>..\..\..\00_LIB\timer.c</FilePath>
             </File>
           </Files>
         </Group>
