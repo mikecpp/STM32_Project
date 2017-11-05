@@ -11,11 +11,12 @@
 int main(void)
 {
     system_init();
+    
     if(uart_init(UART_PORT, 115200) != 0) { 
         return -1;
     }
-    
     uart_consol(UART_PORT);    
+
     gpio_register_driver(&stm32_gpio_drv);  
     spi_register_driver(&stm32_spi_drv);
     GUI_Register(&ili9341_gui_interface);    
@@ -25,7 +26,7 @@ int main(void)
     
     GUI_SetBackColor(GUI_COLOR_BLACK);
     GUI_SetTextColor(GUI_COLOR_YELLOW);
-    GUI_DisplayStringAt(30, 0, (uint8_t*) "Hello", GUI_CENTER_MODE); 
+    GUI_DisplayStringAt(0, 0, (uint8_t*) "Hello", GUI_CENTER_MODE); 
     GUI_DisplayStringAtLine(3, (uint8_t*) "Hello Mike");
 
     int count = 0;
@@ -35,6 +36,6 @@ int main(void)
     {
         sprintf(msg, "Count = %d", count++); 
         GUI_DisplayStringAtLine(5, (uint8_t*) msg);
-        delay_ms(10);
+        delay_ms(1000);
     }
 }

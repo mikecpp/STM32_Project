@@ -52,8 +52,10 @@
 #define SPI2_MOSI_AF                         GPIO_AF5_SPI2
 
 int32_t stm32_spi_init(uint8_t id);
-int32_t stm32_spi_write_read(uint8_t id, uint8_t *pWrite, uint8_t *pRead, uint16_t len);
 int32_t stm32_spi_write(uint8_t id, uint8_t *pData, uint16_t len);
+int32_t stm32_spi_read(uint8_t id, uint8_t *pData, uint16_t len);
+int32_t stm32_spi_write_read(uint8_t id, uint8_t *pWrite, uint8_t *pRead, uint16_t len);
+
 
 extern SPI_Driver_T stm32_spi_drv;
 

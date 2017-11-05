@@ -78,7 +78,6 @@ static int32_t DrawChar(uint16_t Xpos, uint16_t Ypos, const uint8_t *c)
         
         for (j = 0; j < width; j++) {
             uint32_t s = width - j + offset - 1;
-            // ESP_LOGI(TAG, "sift = %d", s);
             if(line & (1 << s)) {
                 *(data+index)   = RGB888to565(m_TextColor) >> 8;
                 *(data+index+1) = RGB888to565(m_TextColor);

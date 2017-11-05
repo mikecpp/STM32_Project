@@ -144,14 +144,14 @@ int32_t stm32_spi_init(uint8_t id)
     return 0;
 }
 
-int32_t stm32_spi_write_read(uint8_t id, uint8_t *pWrite, uint8_t *pRead, uint16_t len)
+int32_t stm32_spi_write(uint8_t id, uint8_t *pData, uint16_t len)
 {
     HAL_StatusTypeDef status = HAL_OK;
     SPI_HandleTypeDef *p_spi_handle = spi_handle(id);    
-    
+
     spi_ss_low(id);
-  
-    status = HAL_SPI_TransmitReceive(p_spi_handle, pWrite, pRead, len, SPI_TIMEOUT);
+    
+    status = HAL_SPI_Transmit(p_spi_handle, pData, len, SPI_TIMEOUT);
 
     spi_ss_high(id);
     
@@ -162,14 +162,32 @@ int32_t stm32_spi_write_read(uint8_t id, uint8_t *pWrite, uint8_t *pRead, uint16
     return 0;
 }
 
-int32_t stm32_spi_write(uint8_t id, uint8_t *pData, uint16_t len)
+int32_t stm32_spi_read(uint8_t id, uint8_t *pData, uint16_t len)
 {
     HAL_StatusTypeDef status = HAL_OK;
     SPI_HandleTypeDef *p_spi_handle = spi_handle(id);    
 
     spi_ss_low(id);
     
-    status = HAL_SPI_Transmit(p_spi_handle, pData, len, SPI_TIMEOUT);
+    status = HAL_SPI_Receive(p_spi_handle, pData, len, SPI_TIMEOUT);
+
+    spi_ss_high(id);
+    
+    if(status != HAL_OK) {
+        return -1;
+    }    
+    
+    return 0;
+}
+
+int32_t stm32_spi_write_read(uint8_t id, uint8_t *pWrite, uint8_t *pRead, uint16_t len)
+{
+    HAL_StatusTypeDef status = HAL_OK;
+    SPI_HandleTypeDef *p_spi_handle = spi_handle(id);    
+    
+    spi_ss_low(id);
+  
+    status = HAL_SPI_TransmitReceive(p_spi_handle, pWrite, pRead, len, SPI_TIMEOUT);
 
     spi_ss_high(id);
     
