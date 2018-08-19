@@ -244,23 +244,14 @@ void nt35510_SetDisplayWindow(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint
     LCD_WR_DATA(Yend & 0XFF);  
 }
 
-void nt35510_DrawHLine(uint16_t Color, uint16_t Xpos, uint16_t Ypos, uint16_t Length)
+void nt35510_DrawHLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length, uint16_t Color)
 {
-    uint16_t index = 0;
-    
-    for(index = 0; index < Length; index++) {
-        nt35510_WritePixel((Xpos + index), Ypos, Color);
-    }
+	nt35510_FillRect(Xpos, Ypos, Length, 1, Color);
 }
 
-void nt35510_DrawVLine(uint16_t Color, uint16_t Xpos, uint16_t Ypos, uint16_t Length)
+void nt35510_DrawVLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length, uint16_t Color)
 {
-    uint16_t index = 0;
-    
-    for(index = 0; index < Length; index++)
-    {
-        nt35510_WritePixel(Xpos, (Ypos + index), Color);
-    }
+	nt35510_FillRect(Xpos, Ypos, 1, Length, Color);
 }
 
 uint16_t nt35510_GetLcdPixelWidth(void)

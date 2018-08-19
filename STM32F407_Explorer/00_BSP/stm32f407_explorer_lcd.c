@@ -95,7 +95,7 @@ void LCD_Clear(uint16_t Color)
     uint16_t width  = LCD_GetXSize();
     uint16_t height = LCD_GetYSize();
     
-    LCD_FillRect(0, 0, width, height, Color);  
+    LCD_FillRect(0, 0, width, height);  
 }
 
 void LCD_ClearStringLine(uint16_t Line)
@@ -104,7 +104,7 @@ void LCD_ClearStringLine(uint16_t Line)
     DrawProp.TextColor = DrawProp.BackColor;
     
     /* Draw a rectangle with background color */
-    LCD_FillRect(0, (Line * DrawProp.pFont->Height), LCD_GetXSize(), DrawProp.pFont->Height, DrawProp.BackColor);
+    LCD_FillRect(0, (Line * DrawProp.pFont->Height), LCD_GetXSize(), DrawProp.pFont->Height);
   
     DrawProp.TextColor = colorbackup;
     LCD_SetTextColor(DrawProp.TextColor);
@@ -189,36 +189,12 @@ uint16_t LCD_ReadPixel(uint16_t Xpos, uint16_t Ypos)
 
 void LCD_DrawHLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
 {
-    uint32_t index = 0;
-  
-    if(lcd_drv->DrawHLine != NULL)
-    {
-        lcd_drv->DrawHLine(DrawProp.TextColor, Xpos, Ypos, Length);
-    }
-    else
-    {
-        for(index = 0; index < Length; index++)
-        {
-        LCD_DrawPixel((Xpos + index), Ypos, DrawProp.TextColor);
-        }
-    }
+	lcd_drv->DrawHLine(Xpos, Ypos, Length, DrawProp.TextColor); 
 }
 
 void LCD_DrawVLine(uint16_t Xpos, uint16_t Ypos, uint16_t Length)
 {
-    uint32_t index = 0;
-  
-    if(lcd_drv->DrawVLine != NULL)
-    {
-        lcd_drv->DrawVLine(DrawProp.TextColor, Xpos, Ypos, Length);
-    }
-    else
-    {
-        for(index = 0; index < Length; index++)
-        {
-            LCD_DrawPixel(Xpos, Ypos + index, DrawProp.TextColor);
-        }
-    }
+    lcd_drv->DrawVLine(Xpos, Ypos, Length, DrawProp.TextColor);
 }
 
 void LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
@@ -291,7 +267,7 @@ void LCD_DrawLine(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
 void LCD_DrawRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
 {
     /* Draw horizontal lines */
-    LCD_DrawHLine(Xpos, Ypos, Width);
+    LCD_DrawHLine(Xpos, Ypos, Width); 
     LCD_DrawHLine(Xpos, (Ypos+ Height), Width);
   
     /* Draw vertical lines */
@@ -415,17 +391,9 @@ void LCD_DrawRGBImage(uint16_t Xpos, uint16_t Ypos, uint16_t Xsize, uint16_t Ysi
     LCD_SetDisplayWindow(0, 0, LCD_GetXSize(), LCD_GetYSize());
 }
 
-void LCD_FillRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height, uint16_t Color)
+void LCD_FillRect(uint16_t Xpos, uint16_t Ypos, uint16_t Width, uint16_t Height)
 {
-    lcd_drv->FillRect(Xpos, Ypos, Width, Height, Color);
-/*    
-    LCD_SetTextColor(DrawProp.TextColor);
-    do
-    {
-        LCD_DrawHLine(Xpos, Ypos++, Width);    
-    }
-    while(Height--);
-*/    
+    lcd_drv->FillRect(Xpos, Ypos, Width, Height, DrawProp.TextColor); 
 }
 
 void LCD_FillCircle(uint16_t Xpos, uint16_t Ypos, uint16_t Radius)

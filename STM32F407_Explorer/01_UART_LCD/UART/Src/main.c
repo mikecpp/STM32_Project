@@ -20,17 +20,73 @@ static void pixel_test(void)
         w = rand() % X_SIZE;
         y = rand() % Y_SIZE;
         c = rand() % 0xFFFF;
-        // LCD_Clear(c);
-        LCD_FillRect(x, y, 100, 100, c);
+		LCD_SetTextColor(c);
+        LCD_FillRect(x, y, 100, 100);
         delay_ms(10);
     }
 }
 
-/*
-static void line_test(void)
+static void h_line_test(void)
 {
+    uint16_t x, y, w;
+    uint16_t c;
+    
+	LCD_SetTextColor(LCD_COLOR_BLACK);
+    LCD_Clear(LCD_COLOR_BLACK);   
+
+    while(1) {
+        x = rand() % X_SIZE;
+        y = rand() % Y_SIZE;
+        w = rand() % X_SIZE;
+        c = rand() % 0xFFFF;
+		LCD_SetTextColor(c);
+        LCD_DrawHLine(x, y, w);
+        delay_ms(10);
+    }		
 }
 
+static void v_line_test(void)
+{
+    uint16_t x, y, w;
+    uint16_t c;
+    
+	LCD_SetTextColor(LCD_COLOR_BLACK);
+    LCD_Clear(LCD_COLOR_BLACK);   
+
+    while(1) {
+        x = rand() % X_SIZE;
+        y = rand() % Y_SIZE;
+        w = rand() % X_SIZE;
+        c = rand() % 0xFFFF;
+		LCD_SetTextColor(c);
+        LCD_DrawVLine(x, y, w);
+        delay_ms(10);
+    }		
+}
+
+static void rectangle_test(void)
+{
+    uint16_t x, y, w, h;
+    uint16_t c;
+    
+	LCD_SetTextColor(LCD_COLOR_BLACK);
+    LCD_Clear(LCD_COLOR_BLACK);   
+
+    while(1) {
+        x = rand() % X_SIZE;
+        y = rand() % Y_SIZE;
+        w = rand() % X_SIZE;
+        h = rand() % Y_SIZE;
+        c = rand() % 0xFFFF;
+		LCD_SetTextColor(c);
+		w = 100;
+		h = 100;
+        LCD_DrawRect(x, y, w, h);
+        delay_ms(10);
+    }		
+}
+
+/*
 static void rectangle_test(void)
 {
 }
@@ -76,15 +132,10 @@ int main(void)
     
     delay_ms(1000);
     
-    LCD_Clear(LCD_COLOR_WHITE);
-    LCD_FillRect( 0, 0, 100, 100, LCD_COLOR_RED);
-    delay_ms(1000);
-    LCD_FillRect( 100, 0, 100, 100, LCD_COLOR_GREEN);
-    delay_ms(1000);
-    LCD_FillRect( 200, 0, 100, 100, LCD_COLOR_BLUE);    
-    delay_ms(1000);
-    
-    pixel_test();
+    // pixel_test();
+	// h_line_test();
+	// v_line_test();
+	rectangle_test();
     
     /*
     while (1)
