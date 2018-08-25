@@ -3,98 +3,44 @@
 #include "stm32f407_explorer_lcd.h" 
 #include <stdlib.h>
 #include <time.h>
+#include "cmsis_os.h"
 
 #define X_SIZE      800
 #define Y_SIZE      480
 
-static void pixel_test(void)
+static void fillrect_test(void *param)
 {   
-    uint16_t x, y, w, h;
+    uint16_t x, y;
     uint16_t c;
     
     LCD_Clear(LCD_COLOR_WHITE);   
 
     while(1) {
-        x = rand() % X_SIZE;
-        y = rand() % Y_SIZE;
-        w = rand() % X_SIZE;
+        x = rand() % 300;
         y = rand() % Y_SIZE;
         c = rand() % 0xFFFF;
 		LCD_SetTextColor(c);
         LCD_FillRect(x, y, 100, 100);
-        delay_ms(10);
+        vTaskDelay(100);
     }
 }
 
-static void h_line_test(void)
+static void rectangle_test(void *param)
 {
-    uint16_t x, y, w;
+    uint16_t x, y;
     uint16_t c;
     
-	LCD_SetTextColor(LCD_COLOR_BLACK);
     LCD_Clear(LCD_COLOR_BLACK);   
 
     while(1) {
-        x = rand() % X_SIZE;
+        x = (rand() % 400) + 400;
         y = rand() % Y_SIZE;
-        w = rand() % X_SIZE;
         c = rand() % 0xFFFF;
 		LCD_SetTextColor(c);
-        LCD_DrawHLine(x, y, w);
-        delay_ms(10);
+        LCD_DrawRect(x, y, 100, 100);
+        delay_ms(1000);
     }		
 }
-
-static void v_line_test(void)
-{
-    uint16_t x, y, w;
-    uint16_t c;
-    
-	LCD_SetTextColor(LCD_COLOR_BLACK);
-    LCD_Clear(LCD_COLOR_BLACK);   
-
-    while(1) {
-        x = rand() % X_SIZE;
-        y = rand() % Y_SIZE;
-        w = rand() % X_SIZE;
-        c = rand() % 0xFFFF;
-		LCD_SetTextColor(c);
-        LCD_DrawVLine(x, y, w);
-        delay_ms(10);
-    }		
-}
-
-static void rectangle_test(void)
-{
-    uint16_t x, y, w, h;
-    uint16_t c;
-    
-	LCD_SetTextColor(LCD_COLOR_BLACK);
-    LCD_Clear(LCD_COLOR_BLACK);   
-
-    while(1) {
-        x = rand() % X_SIZE;
-        y = rand() % Y_SIZE;
-        w = rand() % X_SIZE;
-        h = rand() % Y_SIZE;
-        c = rand() % 0xFFFF;
-		LCD_SetTextColor(c);
-		w = 100;
-		h = 100;
-        LCD_DrawRect(x, y, w, h);
-        delay_ms(10);
-    }		
-}
-
-/*
-static void rectangle_test(void)
-{
-}
-
-static void circle_text(void)
-{
-}
-*/
 
 int main(void)
 {
@@ -131,18 +77,10 @@ int main(void)
     LCD_DisplayStringAtLine(3, (uint8_t *) msg);   
     
     delay_ms(1000);
+    LCD_SetTextColor(LCD_COLOR_BLACK);
+
+    xTaskCreate(fillrect_test, "Pixel Test", 1000, NULL, 5, NULL); 
+    xTaskCreate(rectangle_test, "Rect Test", 1000, NULL, 5, NULL); 
     
-    // pixel_test();
-	// h_line_test();
-	// v_line_test();
-	rectangle_test();
-    
-    /*
-    while (1)
-    {
-        sprintf(msg, "Count = %d", count++);
-        LCD_DisplayStringAtLine(15, (uint8_t *) msg);
-        delay_ms(1000);
-    }
-    */
+    vTaskStartScheduler();
 }

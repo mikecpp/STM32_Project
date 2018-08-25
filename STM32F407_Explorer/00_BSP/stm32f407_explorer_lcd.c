@@ -90,8 +90,6 @@ sFONT *LCD_GetFont(void)
 
 void LCD_Clear(uint16_t Color)
 { 
-    uint32_t counter      = 0;
-    uint32_t color_backup = DrawProp.TextColor; 
     uint16_t width  = LCD_GetXSize();
     uint16_t height = LCD_GetYSize();
     
