@@ -1,12 +1,10 @@
 /**
   ******************************************************************************
-  * @file    UART/UART_Printf/Src/stm32f1xx_it.c
+  * @file    UART/UART_Printf/Src/stm32f4xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.5.0
-  * @date    14-April-2017
-  * @brief   Main Interrupt Service Routines.
-  *          This file provides template for all exceptions handler and
-  *          peripherals interrupt service routine.
+  * @version V1.0.0
+  * @date    06-May-2016
+  * @brief   HAL MSP module.
   ******************************************************************************
   * @attention
   *
@@ -39,13 +37,13 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "stm32f1xx_it.h"
 
-/** @addtogroup STM32F1xx_HAL_Examples
+/** @addtogroup STM32F4xx_HAL_Examples
   * @{
   */
 
-/** @addtogroup UART_Printf
+/** @defgroup HAL_MSP
+  * @brief HAL MSP module.
   * @{
   */
 
@@ -56,123 +54,74 @@
 /* Private function prototypes -----------------------------------------------*/
 /* Private functions ---------------------------------------------------------*/
 
-/******************************************************************************/
-/*            Cortex-M3 Processor Exceptions Handlers                         */
-/******************************************************************************/
+/** @defgroup HAL_MSP_Private_Functions
+  * @{
+  */
 
 /**
-  * @brief   This function handles NMI exception.
-  * @param  None
+  * @brief UART MSP Initialization
+  *        This function configures the hardware resources used in this example:
+  *           - Peripheral's clock enable
+  *           - Peripheral's GPIO Configuration
+  * @param huart: UART handle pointer
   * @retval None
   */
-void NMI_Handler(void)
+void HAL_UART_MspInit(UART_HandleTypeDef *huart)
 {
+  GPIO_InitTypeDef  GPIO_InitStruct;
+
+
+  /*##-1- Enable peripherals and GPIO Clocks #################################*/
+  /* Enable GPIO TX/RX clock */
+  USARTx_TX_GPIO_CLK_ENABLE();
+  USARTx_RX_GPIO_CLK_ENABLE();
+
+
+  /* Enable USARTx clock */
+  USARTx_CLK_ENABLE();
+
+  /*##-2- Configure peripheral GPIO ##########################################*/
+  /* UART TX GPIO pin configuration  */
+  GPIO_InitStruct.Pin       = USARTx_TX_PIN;
+  GPIO_InitStruct.Mode      = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull      = GPIO_PULLUP;
+  GPIO_InitStruct.Speed     = GPIO_SPEED_HIGH;
+  GPIO_InitStruct.Alternate = USARTx_TX_AF;
+
+  HAL_GPIO_Init(USARTx_TX_GPIO_PORT, &GPIO_InitStruct);
+
+  /* UART RX GPIO pin configuration  */
+  GPIO_InitStruct.Pin = USARTx_RX_PIN;
+  GPIO_InitStruct.Alternate = USARTx_RX_AF;
+
+  HAL_GPIO_Init(USARTx_RX_GPIO_PORT, &GPIO_InitStruct);
 }
 
 /**
-  * @brief  This function handles Hard Fault exception.
-  * @param  None
+  * @brief UART MSP De-Initialization
+  *        This function frees the hardware resources used in this example:
+  *          - Disable the Peripheral's clock
+  *          - Revert GPIO and NVIC configuration to their default state
+  * @param huart: UART handle pointer
   * @retval None
   */
-void HardFault_Handler(void)
+void HAL_UART_MspDeInit(UART_HandleTypeDef *huart)
 {
-  /* Go to infinite loop when Hard Fault exception occurs */
-  while (1)
-  {
-  }
+  /*##-1- Reset peripherals ##################################################*/
+  USARTx_FORCE_RESET();
+  USARTx_RELEASE_RESET();
+
+  /*##-2- Disable peripherals and GPIO Clocks #################################*/
+  /* Configure UART Tx as alternate function  */
+  HAL_GPIO_DeInit(USARTx_TX_GPIO_PORT, USARTx_TX_PIN);
+  /* Configure UART Rx as alternate function  */
+  HAL_GPIO_DeInit(USARTx_RX_GPIO_PORT, USARTx_RX_PIN);
+
 }
 
 /**
-  * @brief  This function handles Memory Manage exception.
-  * @param  None
-  * @retval None
+  * @}
   */
-void MemManage_Handler(void)
-{
-  /* Go to infinite loop when Memory Manage exception occurs */
-  while (1)
-  {
-  }
-}
-
-/**
-  * @brief  This function handles Bus Fault exception.
-  * @param  None
-  * @retval None
-  */
-void BusFault_Handler(void)
-{
-  /* Go to infinite loop when Bus Fault exception occurs */
-  while (1)
-  {
-  }
-}
-
-/**
-  * @brief  This function handles Usage Fault exception.
-  * @param  None
-  * @retval None
-  */
-void UsageFault_Handler(void)
-{
-  /* Go to infinite loop when Usage Fault exception occurs */
-  while (1)
-  {
-  }
-}
-
-/**
-  * @brief  This function handles SVCall exception.
-  * @param  None
-  * @retval None
-  */
-void SVC_Handler(void)
-{
-}
-
-/**
-  * @brief  This function handles Debug Monitor exception.
-  * @param  None
-  * @retval None
-  */
-void DebugMon_Handler(void)
-{
-}
-
-/**
-  * @brief  This function handles PendSVC exception.
-  * @param  None
-  * @retval None
-  */
-void PendSV_Handler(void)
-{
-}
-
-/**
-  * @brief  This function handles SysTick Handler.
-  * @param  None
-  * @retval None
-  */
-void SysTick_Handler(void)
-{
-    HAL_IncTick();
-}
-
-/******************************************************************************/
-/*                 STM32F1xx Peripherals Interrupt Handlers                   */
-/*  Add here the Interrupt Handler for the used peripheral(s) (PPP), for the  */
-/*  available peripheral interrupt handler's name please refer to the startup */
-/*  file (startup_stm32f1xx.s).                                               */
-/******************************************************************************/
-/**
-  * @brief  This function handles PPP interrupt request.
-  * @param  None
-  * @retval None
-  */
-/*void PPP_IRQHandler(void)
-{
-}*/
-
 
 /**
   * @}
