@@ -1,23 +1,27 @@
 #ifndef __UART_H__
 #define __UART_H__
 
+// STM32L4
 #ifdef STM32L476xx
     #include "stm32l4xx_hal.h"
     #include "stm32l4xx_hal_uart.h"
 #endif
 
+// STM32F1
 #ifdef USE_STM32F103_FIRE
     #include "stm32f1xx_hal.h"
     #include "stm32f1xx_hal_uart.h"
 #endif
 
+// STM32F4
 #if defined(USE_STM32412G_DISCOVERY) || defined(USE_STM32F429_FIRE) || \
     defined(USE_STM32F429I_DISCO)    || defined(USE_STM32F407_MINI) || \
-    defined(USE_STM32F407_EXPLORER) 
+    defined(USE_STM32F407_EXPLORER)  || defined(USE_STM32F469I_DISCOVERY)
     #include "stm32f4xx_hal.h"
     #include "stm32f4xx_hal_uart.h"
 #endif
 
+// STM32F7
 #ifdef USE_STM32F723E_DISCOVERY
     #include "stm32f7xx_hal.h"
     #include "stm32f7xx_hal_uart.h"
@@ -26,7 +30,7 @@
 #ifdef __cplusplus
  extern "C" {
 #endif
-     
+    
 typedef enum {
     UART_1,
     UART_2,
