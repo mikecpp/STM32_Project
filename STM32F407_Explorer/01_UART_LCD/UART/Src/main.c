@@ -38,7 +38,7 @@ static void rectangle_test(void *param)
         c = rand() % 0xFFFF;
 		LCD_SetTextColor(c);
         LCD_DrawRect(x, y, 100, 100);
-        delay_ms(1000);
+        vTaskDelay(100);
     }		
 }
 

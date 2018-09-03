@@ -1,14 +1,22 @@
 /**
   ******************************************************************************
-  * @file    fonts.h
+  * @file    Templates/Src/stm32f4xx_hal_msp.c
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    18-February-2014
-  * @brief   Header for fonts.c file
+  * @brief   HAL MSP module.
+  *         
+  @verbatim
+ ===============================================================================
+                     ##### How to use this driver #####
+ ===============================================================================
+    [..]
+    This file is generated automatically by STM32CubeMX and eventually modified 
+    by the user
+
+  @endverbatim
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2017 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -33,95 +41,50 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */
-
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __FONTS_H
-#define __FONTS_H
-
-#ifdef __cplusplus
- extern "C" {
-#endif
+  */ 
 
 /* Includes ------------------------------------------------------------------*/
-#include <stdint.h>
+#include "stm32f4xx_hal.h"
 
-/** @addtogroup Utilities
-  * @{
-  */
-  
-/** @addtogroup STM32_EVAL
-  * @{
-  */ 
-
-/** @addtogroup Common
+/** @addtogroup STM32F4xx_HAL_Driver
   * @{
   */
 
-/** @addtogroup FONTS
+/** @defgroup HAL_MSP
+  * @brief HAL MSP module.
   * @{
-  */ 
-
-/** @defgroup FONTS_Exported_Types
-  * @{
-  */ 
-typedef struct _tFont
-{    
-  const uint8_t *table;
-  uint16_t Width;
-  uint16_t Height;
-  
-} sFONT;
-
-extern sFONT Font24;
-extern sFONT Font20;
-extern sFONT Font16;
-extern sFONT Font12;
-extern sFONT Font8;
-/**
-  * @}
-  */ 
-
-/** @defgroup FONTS_Exported_Constants
-  * @{
-  */ 
-#define LINE(x) ((x) * (((sFONT *) BSP_LCD_GetFont())->Height))
-
-/**
-  * @}
-  */ 
-
-/** @defgroup FONTS_Exported_Macros
-  * @{
-  */ 
-/**
-  * @}
-  */ 
-
-/** @defgroup FONTS_Exported_Functions
-  * @{
-  */ 
-/**
-  * @}
   */
 
-#ifdef __cplusplus
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
+
+/** @defgroup HAL_MSP_Private_Functions
+  * @{
+  */
+
+/**
+  * @brief  Initializes the Global MSP.
+  * @param  None
+  * @retval None
+  */
+void HAL_MspInit(void)
+{
+
 }
-#endif
-  
-#endif /* __FONTS_H */
- 
-/**
-  * @}
-  */
 
 /**
-  * @}
-  */ 
-
-/**
-  * @}
+  * @brief  DeInitializes the Global MSP.
+  * @param  None  
+  * @retval None
   */
+void HAL_MspDeInit(void)
+{
+
+}
 
 /**
   * @}
@@ -129,6 +92,10 @@ extern sFONT Font8;
 
 /**
   * @}
-  */      
+  */
+
+/**
+  * @}
+  */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

@@ -335,7 +335,7 @@
               <MiscControls>--C99</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F469xx,USE_STM32F469I_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Inc;D:\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;D:\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\00_BSP;..\..\..\Library</IncludePath>
+              <IncludePath>..\Inc;D:\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;D:\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\00_BSP;..\..\..\Library;..\..\..\Middlewares\FreeRTOS\Source\portable\RVDS\ARM_CM4F;..\..\..\Middlewares\FreeRTOS\Source\include;..\..\..\Middlewares\FreeRTOS\Source\CMSIS_RTOS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -573,6 +573,56 @@
               <FileName>stm32469i_discovery.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\00_BSP\stm32469i_discovery.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>FreeRTOS</GroupName>
+          <Files>
+            <File>
+              <FileName>timers.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\timers.c</FilePath>
+            </File>
+            <File>
+              <FileName>queue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\queue.c</FilePath>
+            </File>
+            <File>
+              <FileName>event_groups.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\event_groups.c</FilePath>
+            </File>
+            <File>
+              <FileName>heap_4.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\portable\MemMang\heap_4.c</FilePath>
+            </File>
+            <File>
+              <FileName>port.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\portable\RVDS\ARM_CM4F\port.c</FilePath>
+            </File>
+            <File>
+              <FileName>list.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\list.c</FilePath>
+            </File>
+            <File>
+              <FileName>croutine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\croutine.c</FilePath>
+            </File>
+            <File>
+              <FileName>tasks.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\tasks.c</FilePath>
+            </File>
+            <File>
+              <FileName>cmsis_os.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\Middlewares\FreeRTOS\Source\CMSIS_RTOS\cmsis_os.c</FilePath>
             </File>
           </Files>
         </Group>

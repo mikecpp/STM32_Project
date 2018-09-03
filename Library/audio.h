@@ -1,14 +1,15 @@
 /**
   ******************************************************************************
-  * @file    fonts.h
+  * @file    audio.h
   * @author  MCD Application Team
-  * @version V1.0.0
-  * @date    18-February-2014
-  * @brief   Header for fonts.c file
+  * @version V4.0.1
+  * @date    21-July-2015
+  * @brief   This header file contains the common defines and functions prototypes
+  *          for the Audio driver.  
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; COPYRIGHT(c) 2014 STMicroelectronics</center></h2>
+  * <h2><center>&copy; COPYRIGHT(c) 2015 STMicroelectronics</center></h2>
   *
   * Redistribution and use in source and binary forms, with or without modification,
   * are permitted provided that the following conditions are met:
@@ -36,8 +37,8 @@
   */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __FONTS_H
-#define __FONTS_H
+#ifndef __AUDIO_H
+#define __AUDIO_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -46,61 +47,68 @@
 /* Includes ------------------------------------------------------------------*/
 #include <stdint.h>
 
-/** @addtogroup Utilities
-  * @{
-  */
-  
-/** @addtogroup STM32_EVAL
-  * @{
-  */ 
-
-/** @addtogroup Common
+/** @addtogroup BSP
   * @{
   */
 
-/** @addtogroup FONTS
+/** @addtogroup Components
   * @{
-  */ 
-
-/** @defgroup FONTS_Exported_Types
+  */
+    
+/** @addtogroup AUDIO
   * @{
-  */ 
-typedef struct _tFont
-{    
-  const uint8_t *table;
-  uint16_t Width;
-  uint16_t Height;
-  
-} sFONT;
+  */
 
-extern sFONT Font24;
-extern sFONT Font20;
-extern sFONT Font16;
-extern sFONT Font12;
-extern sFONT Font8;
-/**
-  * @}
-  */ 
-
-/** @defgroup FONTS_Exported_Constants
+/** @defgroup AUDIO_Exported_Constants
   * @{
-  */ 
-#define LINE(x) ((x) * (((sFONT *) BSP_LCD_GetFont())->Height))
+  */
+
+/* Codec audio Standards */
+#define CODEC_STANDARD                0x04
+#define I2S_STANDARD                  I2S_STANDARD_PHILIPS
 
 /**
   * @}
-  */ 
+  */
 
-/** @defgroup FONTS_Exported_Macros
+/** @defgroup AUDIO_Exported_Types
   * @{
-  */ 
+  */
+
+/** @defgroup AUDIO_Driver_structure  Audio Driver structure
+  * @{
+  */
+typedef struct
+{
+  uint32_t  (*Init)(uint16_t, uint16_t, uint8_t, uint32_t);
+  void      (*DeInit)(void);
+  uint32_t  (*ReadID)(uint16_t);
+  uint32_t  (*Play)(uint16_t, uint16_t*, uint16_t);
+  uint32_t  (*Pause)(uint16_t);
+  uint32_t  (*Resume)(uint16_t);
+  uint32_t  (*Stop)(uint16_t, uint32_t);
+  uint32_t  (*SetFrequency)(uint16_t, uint32_t);
+  uint32_t  (*SetVolume)(uint16_t, uint8_t);
+  uint32_t  (*SetMute)(uint16_t, uint32_t);
+  uint32_t  (*SetOutputMode)(uint16_t, uint8_t);
+  uint32_t  (*Reset)(uint16_t);
+}AUDIO_DrvTypeDef;
 /**
   * @}
-  */ 
+  */
 
-/** @defgroup FONTS_Exported_Functions
-  * @{
-  */ 
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+
 /**
   * @}
   */
@@ -108,27 +116,7 @@ extern sFONT Font8;
 #ifdef __cplusplus
 }
 #endif
-  
-#endif /* __FONTS_H */
- 
-/**
-  * @}
-  */
 
-/**
-  * @}
-  */ 
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */
-
-/**
-  * @}
-  */      
+#endif /* __AUDIO_H */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
