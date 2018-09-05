@@ -85,6 +85,9 @@ extern "C" {
  *-----------------------------------------------------------
  */
 
+#include <stdint.h>
+#include "projdefs.h"
+    
 /* Type definitions. */
 #define portCHAR		char
 #define portFLOAT		float

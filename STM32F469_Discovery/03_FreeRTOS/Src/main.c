@@ -9,6 +9,7 @@
 
 SemaphoreHandle_t xSemaphore    = NULL;
 QueueHandle_t     queue_display = NULL;
+TimerHandle_t     timer         = NULL;
 
 int count = 0;
 char msg[64];
@@ -50,6 +51,13 @@ static void main_task(void *param)
     }
 }
 
+static void timer_task(TimerHandle_t timer)
+{
+    int c = 0;
+    
+    printf("Timer = %d (%X) \r\n", c++, (uint32_t) timer);
+}
+
 int main(void)
 {
     system_init();
@@ -68,6 +76,9 @@ int main(void)
     BSP_LCD_DisplayStringAtLine(1, (uint8_t*) "Hello Mike");
     BSP_LCD_DisplayStringAtLine(2, (uint8_t*) "ABCDE1234567890");        
 
+    timer = xTimerCreate("Timer", 1000, pdTRUE, NULL, timer_task);
+    xTimerStart(timer, 0);
+    
     xTaskCreate(main_task, "Main Task", 1000, NULL, 5, NULL);
    
     vTaskStartScheduler();
