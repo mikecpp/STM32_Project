@@ -4,7 +4,7 @@
  *      *** Do not modify ! ***
  *
  * Project: 'UART' 
- * Target:  'STM32F407_Explorer' 
+ * Target:  'STM32F407_Mini' 
  */
 
 #ifndef RTE_COMPONENTS_H

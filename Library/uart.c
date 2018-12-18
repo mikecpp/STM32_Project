@@ -11,6 +11,24 @@ static UART_ID m_consol_id          = UART_2;            // consol port
 
 UART_HandleTypeDef UartHandle[UART_MAX_COUNT];
 
+__asm(".global __use_no_semihosting_swi\n");
+
+FILE __stdout;
+FILE __stdin;
+
+int ferror(FILE *f) 
+{
+    return EOF;
+}
+
+void _ttywrch(int c) {
+    // sendchar(c);
+}
+
+void _sys_exit(int return_code) {
+    label:  goto label; 
+}
+
 int fputc(int ch, FILE *f)
 {
     HAL_UART_Transmit(&UartHandle[m_consol_id], (uint8_t *)&ch, 1, UART_TX_TIMEOUT);
