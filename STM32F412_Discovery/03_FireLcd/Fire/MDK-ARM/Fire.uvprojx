@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F412Zx,USE_HAL_DRIVER,USE_STM32412G_DISCOVERY</Define>
               <Undefine></Undefine>
-              <IncludePath>..\inc;D:\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;D:\STM32Cube_F4\Drivers\CMSIS\Include;D:\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\00_BSP;..\..\..\..\Library</IncludePath>
+              <IncludePath>..\inc;D:\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;D:\STM32Cube_F4\Drivers\CMSIS\Include;D:\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\00_BSP;..\..\..\..\Library;..\..\..\..\..\Fire\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -478,24 +478,9 @@
               <FilePath>..\..\..\00_BSP\stm32f412_system.c</FilePath>
             </File>
             <File>
-              <FileName>stm32412g_discovery_lcd.c</FileName>
+              <FileName>stm32_i2c.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\..\00_BSP\stm32412g_discovery_lcd.c</FilePath>
-            </File>
-            <File>
-              <FileName>stm32412g_discovery.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_BSP\stm32412g_discovery.c</FilePath>
-            </File>
-            <File>
-              <FileName>ls016b8uy.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_BSP\ls016b8uy.c</FilePath>
-            </File>
-            <File>
-              <FileName>st7789h2.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\00_BSP\st7789h2.c</FilePath>
+              <FilePath>..\..\..\00_BSP\stm32_i2c.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -518,6 +503,51 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Fire</GroupName>
+          <Files>
+            <File>
+              <FileName>FireSsd1306.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\FireSsd1306.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>FireLcd.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\FireLcd.cpp</FilePath>
+            </File>
+            <File>
+              <FileName>font8.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\font8.c</FilePath>
+            </File>
+            <File>
+              <FileName>font12.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\font12.c</FilePath>
+            </File>
+            <File>
+              <FileName>font16.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\font16.c</FilePath>
+            </File>
+            <File>
+              <FileName>font20.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\font20.c</FilePath>
+            </File>
+            <File>
+              <FileName>font24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\..\..\Fire\lib\font24.c</FilePath>
+            </File>
+            <File>
+              <FileName>FireI2c.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>..\..\..\..\..\Fire\platform\stm32\FireI2c.cpp</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>User</GroupName>
           <Files>
             <File>
@@ -526,9 +556,9 @@
               <FilePath>..\Src\stm32f4xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>main.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\main.c</FilePath>
+              <FileName>main.cpp</FileName>
+              <FileType>8</FileType>
+              <FilePath>.\main.cpp</FilePath>
             </File>
           </Files>
         </Group>

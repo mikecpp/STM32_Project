@@ -13,6 +13,10 @@
 
 #include "i2c.h"
 
+#ifdef __cplusplus
+ extern "C" {
+#endif
+     
 // I2C1 (SCL: PB6, SDA: PB7)
 #define I2C1_CLK_ENABLE()               __HAL_RCC_I2C1_CLK_ENABLE()
 #define I2C1_SDA_GPIO_CLK_ENABLE()      __HAL_RCC_GPIOB_CLK_ENABLE()
@@ -72,5 +76,9 @@ int32_t stm32_i2c_write(uint8_t id, uint8_t addr, uint8_t *buf, int32_t len);
 int32_t stm32_i2c_read(uint8_t id, uint8_t addr, uint8_t *buf, int32_t len);
 
 extern I2C_Driver_T stm32_i2c_drv;
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif//__STM32_I2C_H__
