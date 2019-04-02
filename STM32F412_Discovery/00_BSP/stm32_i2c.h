@@ -11,7 +11,7 @@
     #include "stm32f4xx_hal_i2c.h"
 #endif
 
-#include "i2c.h"
+// #include "i2c.h"
 
 #ifdef __cplusplus
  extern "C" {
@@ -75,7 +75,7 @@ int32_t stm32_i2c_read_byte(uint8_t id, uint8_t addr, uint8_t *value);
 int32_t stm32_i2c_write(uint8_t id, uint8_t addr, uint8_t *buf, int32_t len);
 int32_t stm32_i2c_read(uint8_t id, uint8_t addr, uint8_t *buf, int32_t len);
 
-extern I2C_Driver_T stm32_i2c_drv;
+// extern I2C_Driver_T stm32_i2c_drv;
 
 #ifdef __cplusplus
 }

@@ -10,22 +10,13 @@
 
 I2C_HandleTypeDef m_i2c_handle[I2C_MAX_NUM];
 
-I2C_Driver_T stm32_i2c_drv = 
-{
-    stm32_i2c_init,
-    stm32_i2c_write_byte,
-    stm32_i2c_read_byte,
-    stm32_i2c_write,
-    stm32_i2c_read
-};
-
 void HAL_I2C_MspInit(I2C_HandleTypeDef *hi2c)
 {
     GPIO_InitTypeDef  GPIO_InitStruct;
     
     I2C1_SCL_GPIO_CLK_ENABLE(); 
     I2C1_SDA_GPIO_CLK_ENABLE();
-
+ 
     I2C1_CLK_ENABLE(); 
 
     GPIO_InitStruct.Pin       = I2C1_SCL_PIN;
@@ -76,13 +67,13 @@ void HAL_I2C_MspDeInit(I2C_HandleTypeDef *hi2c)
 static I2C_HandleTypeDef* i2c_handle(uint8_t id)
 {
     I2C_HandleTypeDef *p_i2c_handle = NULL; 
-    
+          
     switch(id) {
-        case I2C_1:
+        case 1: //I2C_1
             p_i2c_handle = &m_i2c_handle[0]; 
             p_i2c_handle->Instance = I2C1;  
             break;
-        case I2C_2:
+        case 2: //I2C_2
             p_i2c_handle = &m_i2c_handle[1];
             p_i2c_handle->Instance = I2C2;
             break;
@@ -96,7 +87,7 @@ static I2C_HandleTypeDef* i2c_handle(uint8_t id)
 int32_t stm32_i2c_init(uint8_t id)
 {
     I2C_HandleTypeDef *p_i2c_handle = i2c_handle(id);
-
+    
 #ifdef USE_STM32F723E_DISCOVERY    
     p_i2c_handle->Init.Timing          = I2C_TIMING; 
 #endif    
