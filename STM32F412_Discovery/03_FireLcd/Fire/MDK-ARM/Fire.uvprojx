@@ -336,7 +336,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls></MiscControls>
-              <Define>STM32F412Zx,USE_HAL_DRIVER,USE_STM32412G_DISCOVERY</Define>
+              <Define>STM32F412Zx,USE_HAL_DRIVER,USE_STM32412G_DISCOVERY,__STM32__</Define>
               <Undefine></Undefine>
               <IncludePath>..\inc;D:\STM32Cube_F4\Drivers\CMSIS\Device\ST\STM32F4xx\Include;D:\STM32Cube_F4\Drivers\CMSIS\Include;D:\STM32Cube_F4\Drivers\STM32F4xx_HAL_Driver\Inc;..\..\..\00_BSP;..\..\..\..\Library;..\..\..\..\..\Fire\inc</IncludePath>
             </VariousControls>
